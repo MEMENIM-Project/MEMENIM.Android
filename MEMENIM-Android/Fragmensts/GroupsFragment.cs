@@ -15,6 +15,16 @@ namespace MEMENIM_Android.Fragmensts
 {
     public class GroupsFragment : Fragment
     {
+        string[] wipSmiles = new string[]
+        {
+            "凹(´･ω･｀)凹",
+            "(っ´ω｀c)",
+            "つ´Д`)つ",
+            "(┛ಠДಠ)┛彡┻━┻"
+        };
+
+        TextView wipText;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,7 +44,27 @@ namespace MEMENIM_Android.Fragmensts
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
-            return base.OnCreateView(inflater, container, savedInstanceState);
+            View view = inflater.Inflate(Resource.Layout.GroupsFragmentLayout, container, false);
+
+
+            wipText = view.FindViewById<TextView>(Resource.Id.InProgressPlaceholderText);
+
+            SetWIPText();
+
+            return view;
+        }
+
+        void SetWIPText()
+        {
+            Random rnd = new Random();
+            int pos = rnd.Next(0, wipSmiles.Length);
+            wipText.Text = wipSmiles[pos];
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+            SetWIPText();
         }
     }
 }

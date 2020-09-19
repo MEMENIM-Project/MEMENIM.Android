@@ -15,16 +15,27 @@ using Memenim.Core.Data;
 using Android.Support.V7.Widget;
 using System.Threading.Tasks;
 using Android.Graphics;
+using System.Threading;
+using MEMENIM_Android.Activities;
 
 namespace MEMENIM_Android
 {
     public class PostAdapter : RecyclerView.Adapter
     {
         List<PostData> items;
+        List<Bitmap> itemPics;
+
+        public event EventHandler<int> ItemClick;
+
 
         public PostAdapter(List<PostData> data)
         {
             items = data;
+            itemPics = new List<Bitmap>();
+            foreach(var it in items)
+            {
+                itemPics.Add(Utils.GetImageBitmapFromUrl(it.attachments[0].photo.photo_medium));
+            }
         }
 
         // Create new views (invoked by the layout manager)
@@ -36,24 +47,8 @@ namespace MEMENIM_Android
                         Inflate(Resource.Layout.PostCardView, parent, false);
 
             // Create a ViewHolder to hold view references inside the CardView:
-            PostViewHolder vh = new PostViewHolder(itemView);
+            PostViewHolder vh = new PostViewHolder(itemView, OnClick);
             return vh;
-        }
-
-        private Bitmap GetImageBitmapFromUrl(string url)
-        {
-            Bitmap imageBitmap = null;
-
-            using (var webClient = new System.Net.WebClient())
-            {
-                var imageBytes = webClient.DownloadData(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }
-
-            return imageBitmap;
         }
 
 
@@ -63,8 +58,7 @@ namespace MEMENIM_Android
             PostViewHolder vh = viewHolder as PostViewHolder;
 
             // Load the photo image resource from the photo album:
-            var imageBitmap = GetImageBitmapFromUrl(items[position].attachments[0].photo.photo_medium);
-            vh.Image.SetImageBitmap(imageBitmap);
+            vh.Image.SetImageBitmap(itemPics[position]);
 
             // Load the photo caption from the photo album:
             vh.Post.Text = items[position].text;
@@ -78,6 +72,11 @@ namespace MEMENIM_Android
             }
         }
 
+        void OnClick(int position)
+        {
+            if (ItemClick != null)
+                ItemClick(this, items[position].id);
+        }
     }
 
     public class PostViewHolder : RecyclerView.ViewHolder
@@ -86,10 +85,11 @@ namespace MEMENIM_Android
         public TextView Post { get; set; }
 
 
-        public PostViewHolder(View itemView) : base(itemView)
+        public PostViewHolder(View itemView, Action<int> listener) : base(itemView)
         {
             Image = itemView.FindViewById<ImageView>(Resource.Id.postCardImage);
             Post = itemView.FindViewById<TextView>(Resource.Id.postCardContent);
+            itemView.Click += (sender, e) => listener(base.LayoutPosition);
         }
     }
 
@@ -123,34 +123,47 @@ namespace MEMENIM_Android
             m_RecyclerView.SetLayoutManager(layoutManager);
             m_RecyclerView.HasFixedSize = true;
 
-            List<PostData> posts = null;
+            List<PostData> posts = new List<PostData>();
 
             Task t = Task.Run(async () =>
             {
-                var filter = new PostRequest()
+                posts = await GetPosts(new PostRequest()
                 {
                     count = 20,
                     type = PostRequest.EPostType.New
-                };
-
-                var response = await PostAPI.GetAllPosts(filter, AppPersistent.UserToken);
-                if(response.error)
-                {
-                    return;
-                }
-
-                posts = response.data;
+                });
             });
 
             t.Wait();
-
-            // Plug in my adapter:
-            m_PostsAdapter = new PostAdapter(posts);
-            m_RecyclerView.SetAdapter(m_PostsAdapter);
-
+            InitPostsData(posts);
+            //t.ContinueWith(ct => InitPostsData(posts));
 
             return view;
         }
 
+        public async Task<List<PostData>> GetPosts(PostRequest filter)
+        {
+            var response = await PostAPI.GetAllPosts(filter, AppPersistent.UserToken);
+            if (response.error)
+            {
+                return new List<PostData>();
+            }
+
+            return response.data;
+        }
+
+        void InitPostsData(List<PostData> posts)
+        {
+            m_PostsAdapter = new PostAdapter(posts);
+            m_RecyclerView.SetAdapter(m_PostsAdapter);
+            m_PostsAdapter.ItemClick += OnItemClick;
+        }
+
+        void OnItemClick(object sender, int position)
+        {
+            var intent = new Intent(Activity, typeof(PostActivity));
+            intent.PutExtra("PostID", position);
+            StartActivity(intent);
+        }
     }
 }
