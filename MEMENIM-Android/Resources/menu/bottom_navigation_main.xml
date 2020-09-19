@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--For all properties see: https://aka.ms/android-menu-resource-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+  
+  <item
+    android:id="@+id/menu_groups"
+    android:enabled="true"
+    android:icon="@drawable/ic_group"
+    android:title="@string/tab1_title"
+    app:showAsAction="ifRoom" />
+
+  <item
+      android:id="@+id/menu_posts"
+      android:enabled="true"
+      android:title="@string/tab2_title"
+      android:icon="@drawable/ic_post"
+      app:showAsAction="ifRoom" />
+
+  <item
+      android:id="@+id/menu_profile"
+      android:enabled="true"
+      android:icon="@drawable/ic_account_box"
+      android:title="@string/tab3_title"
+      app:showAsAction="ifRoom" />
+
+</menu>
+
+<!-- Code to implement into Activity:
+
+Android.Widget.SearchView searchView;
+public override bool OnCreateOptionsMenu(IMenu menu)
+{
+  this.MenuInflater.Inflate(Resource.Menu.bottom_navigation_main, menu);
+
+  var searchItem = menu.FindItem(Resource.Id.action_search);
+
+  searchView = searchItem.ActionProvider.JavaCast<Android.Widget.SearchView>();
+
+  searchView.QueryTextSubmit += (sender, args) =>
+  {
+    Toast.MakeText(this, "You searched: " + args.Query, ToastLength.Short).Show();
+
+  };
+
+
+  return base.OnCreateOptionsMenu(menu);
+}
+
+-->
