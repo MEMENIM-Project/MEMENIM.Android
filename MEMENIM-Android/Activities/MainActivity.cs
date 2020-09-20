@@ -9,7 +9,7 @@ using Android.Support.Design.Internal;
 using Android.Support.Design.Widget;
 using MEMENIM.Fragmensts;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
+using MEMENIM_Android;
 
 namespace MEMENIM.Activities
 {
@@ -48,8 +48,10 @@ namespace MEMENIM.Activities
             Android.Support.V4.App.Fragment fragment = null;
             switch (id)
             {
+                case Resource.Id.menu_chat:
+                case Resource.Id.menu_search:
                 case Resource.Id.menu_groups:
-                    fragment = GroupsFragment.NewInstance();
+                    fragment = PlaceholderFragment.NewInstance();
                     break;
                 case Resource.Id.menu_posts:
                     fragment = PostsFragment.NewInstance();

@@ -7,21 +7,35 @@
     android:id="@+id/menu_groups"
     android:enabled="true"
     android:icon="@drawable/ic_group"
-    android:title="@string/tab1_title"
+    android:title="@string/tab_groups"
     app:showAsAction="ifRoom" />
 
   <item
-      android:id="@+id/menu_posts"
+    android:id="@+id/menu_posts"
+    android:enabled="true"
+    android:title="@string/tab_posts"
+    android:icon="@drawable/ic_post"
+    app:showAsAction="ifRoom" />
+
+  <item
+      android:id="@+id/menu_search"
       android:enabled="true"
-      android:title="@string/tab2_title"
-      android:icon="@drawable/ic_post"
+      android:title="@string/tab_search"
+      android:icon="@drawable/ic_search"
       app:showAsAction="ifRoom" />
+
+  <item
+    android:id="@+id/menu_chat"
+    android:enabled="true"
+    android:title="@string/tab_chat"
+    android:icon="@drawable/ic_im"
+    app:showAsAction="ifRoom" />
 
   <item
       android:id="@+id/menu_profile"
       android:enabled="true"
       android:icon="@drawable/ic_account_box"
-      android:title="@string/tab3_title"
+      android:title="@string/tab_profile"
       app:showAsAction="ifRoom" />
 
 </menu>

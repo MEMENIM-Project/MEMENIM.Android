@@ -10,10 +10,11 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using MEMENIM_Android;
 
 namespace MEMENIM.Fragmensts
 {
-    public class GroupsFragment : Fragment
+    public class PlaceholderFragment : Fragment
     {
         string[] wipSmiles = new string[]
         {
@@ -32,9 +33,9 @@ namespace MEMENIM.Fragmensts
             // Create your fragment here
         }
 
-        public static GroupsFragment NewInstance()
+        public static PlaceholderFragment NewInstance()
         {
-            var frag = new GroupsFragment { Arguments = new Bundle() };
+            var frag = new PlaceholderFragment { Arguments = new Bundle() };
             return frag;
         }
 
@@ -44,7 +45,7 @@ namespace MEMENIM.Fragmensts
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
-            View view = inflater.Inflate(Resource.Layout.GroupsFragmentLayout, container, false);
+            View view = inflater.Inflate(Resource.Layout.PlaceholderPageLayout, container, false);
 
 
             wipText = view.FindViewById<TextView>(Resource.Id.InProgressPlaceholderText);

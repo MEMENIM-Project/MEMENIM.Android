@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Memenim.Core;
-using Xamarin.Essentials;
+using MEMENIM_Android;
 
 namespace MEMENIM.Activities
 {

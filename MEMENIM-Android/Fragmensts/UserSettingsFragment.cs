@@ -15,8 +15,8 @@ using System.Threading.Tasks;
 using Memenim.Core;
 using Memenim.Core.Data;
 using Java.Nio.Channels;
-using Xamarin.Essentials;
 using MEMENIM.Activities;
+using MEMENIM_Android;
 
 namespace MEMENIM.Fragmensts
 {
@@ -95,7 +95,7 @@ namespace MEMENIM.Fragmensts
 
         private void SignOut_Click(object sender, EventArgs e)
         {
-            SecureStorage.RemoveAll();
+            Xamarin.Essentials.SecureStorage.RemoveAll();
             var intent = new Intent(Activity, typeof(LoginActivity));
             StartActivity(intent);
 

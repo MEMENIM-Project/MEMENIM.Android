@@ -14,6 +14,7 @@ using Android.Views;
 using Android.Widget;
 using Memenim.Core;
 using Memenim.Core.Data;
+using MEMENIM_Android;
 
 namespace MEMENIM.Activities
 {
