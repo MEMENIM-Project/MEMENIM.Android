@@ -114,6 +114,9 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Karamunting.Android.Felipecsl.GifImageView">
+      <Version>2.3.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Memenim.Core">
       <Version>0.1.6.2</Version>
     </PackageReference>
@@ -181,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\progress_nc.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -8,6 +8,8 @@
         android:layout_height="wrap_content"
         android:minHeight="50dp"
         android:minWidth="70dp"
+        android:maxHeight="50dp"
+        android:maxWidth="70dp"
         android:padding="10dp"
         android:id="@+id/CommentImage"/>
     <LinearLayout
