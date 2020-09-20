@@ -41,8 +41,26 @@ namespace MEMENIM_Android.Activities
 
             t.Wait();
             InitContent();
+            Button sendBtn = FindViewById<Button>(Resource.Id.PostSendComment);
+            sendBtn.Click += SendBtn_Click;
             //t.ContinueWith(ct => InitContent());
 
+        }
+
+        private async void SendBtn_Click(object sender, EventArgs e)
+        {
+            EditText content = FindViewById<EditText>(Resource.Id.PostCommentText);
+
+            var res = await PostAPI.SendComment(Intent.GetIntExtra("PostID", 0), content.Text, false, AppPersistent.UserToken);
+
+            if(res.error)
+            {
+                FeedbackHelper.ShowPopup(this, res.message);
+            }
+            else
+            {
+                FeedbackHelper.ShowPopup(this, "S U C C");
+            }
         }
 
         void InitContent()

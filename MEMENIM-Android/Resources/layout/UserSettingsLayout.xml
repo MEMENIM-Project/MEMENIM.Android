@@ -17,20 +17,22 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/UserPicURL"/>
+        android:id="@+id/UserPicURL"
+        android:hint="@string/pic_url"
+        android:inputType="textUri" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ChangeAvatarBtn"
-        android:text="Change User Pic"/>
+        android:text="@string/change_avatar"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Change Banner"
+        android:text="@string/change_banner"
         android:id="@+id/UserChangeBanner"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Out"
+        android:text="@string/logout"
         android:id="@+id/UserSignOut"/>
 </LinearLayout>
