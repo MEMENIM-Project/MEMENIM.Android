@@ -9,6 +9,8 @@ using MEMENIM_Android.Activities;
 using Android.Support.Design.Internal;
 using Android.Support.Design.Widget;
 using MEMENIM_Android.Fragmensts;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace MEMENIM_Android
 {
@@ -33,6 +35,7 @@ namespace MEMENIM_Android
                 var intent = new Intent(this, typeof(LoginActivity));
                 StartActivity(intent);
             }
+            LoadFragment(Resource.Id.menu_groups);
         }
 
         private void NavigationMenu_NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)

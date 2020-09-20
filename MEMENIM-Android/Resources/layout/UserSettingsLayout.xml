@@ -23,4 +23,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/ChangeAvatarBtn"
         android:text="Change User Pic"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Banner"
+        android:id="@+id/UserChangeBanner"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Out"
+        android:id="@+id/UserSignOut"/>
 </LinearLayout>

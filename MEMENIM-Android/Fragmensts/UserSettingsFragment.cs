@@ -14,6 +14,9 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Memenim.Core;
 using Memenim.Core.Data;
+using Java.Nio.Channels;
+using Xamarin.Essentials;
+using MEMENIM_Android.Activities;
 
 namespace MEMENIM_Android.Fragmensts
 {
@@ -48,12 +51,15 @@ namespace MEMENIM_Android.Fragmensts
             {
                 await UpdateData();
             });
-
-            Button changeAvatar = view.FindViewById<Button>(Resource.Id.ChangeAvatarBtn);
-
-            changeAvatar.Click += ChangeAvatar_Click;
             t.Wait();
 
+            Button changeAvatar = view.FindViewById<Button>(Resource.Id.ChangeAvatarBtn);
+            Button changeBanner = view.FindViewById<Button>(Resource.Id.UserChangeBanner);
+
+            Button signOut = view.FindViewById<Button>(Resource.Id.UserSignOut);
+            changeAvatar.Click += ChangeAvatar_Click;
+            changeBanner.Click += ChangeBanner_Click;
+            signOut.Click += SignOut_Click;
             return view;
         }
 
@@ -70,6 +76,29 @@ namespace MEMENIM_Android.Fragmensts
             {
                 FeedbackHelper.ShowPopup(Activity, res.message);
             }
+        }
+
+        private async void ChangeBanner_Click(object sender, EventArgs e)
+        {
+            var res = await UsersAPI.GetUserProfileByID(AppPersistent.LocalUserId);
+
+            if (!res.error)
+            {
+                res.data[0].banner = m_ProfilePicURL.Text;
+                await ChangeUserData(res.data[0]);
+            }
+            else
+            {
+                FeedbackHelper.ShowPopup(Activity, res.message);
+            }
+        }
+
+        private void SignOut_Click(object sender, EventArgs e)
+        {
+            SecureStorage.RemoveAll();
+            var intent = new Intent(Activity, typeof(LoginActivity));
+            StartActivity(intent);
+
         }
 
         private async Task ChangeUserData(ProfileData data)

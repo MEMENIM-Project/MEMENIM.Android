@@ -9,11 +9,13 @@
         android:gravity="center_horizontal"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:textSize="36dp" />
+        android:textSize="36dp"
+        />
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textColor="#333333"
+        android:layout_margin="10dp"
         android:text="Feature is not implemented"/>
 </LinearLayout>
