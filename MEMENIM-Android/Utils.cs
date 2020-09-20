@@ -11,7 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace MEMENIM_Android
+namespace MEMENIM
 {
     static class Utils
     {

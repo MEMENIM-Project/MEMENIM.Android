@@ -11,7 +11,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 
-namespace MEMENIM_Android.Fragmensts
+namespace MEMENIM.Fragmensts
 {
     public class GroupsFragment : Fragment
     {

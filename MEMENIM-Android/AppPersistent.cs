@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Xamarin.Essentials;
 
-namespace MEMENIM_Android
+namespace MEMENIM
 {
     static class AppPersistent
     {

@@ -16,9 +16,9 @@ using Android.Support.V7.Widget;
 using System.Threading.Tasks;
 using Android.Graphics;
 using System.Threading;
-using MEMENIM_Android.Activities;
+using MEMENIM.Activities;
 
-namespace MEMENIM_Android
+namespace MEMENIM
 {
     public class PostAdapter : RecyclerView.Adapter
     {

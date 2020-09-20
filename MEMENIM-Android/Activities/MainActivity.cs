@@ -5,14 +5,13 @@ using Android.Runtime;
 using Android.Widget;
 using Memenim.Core;
 using Android.Content;
-using MEMENIM_Android.Activities;
 using Android.Support.Design.Internal;
 using Android.Support.Design.Widget;
-using MEMENIM_Android.Fragmensts;
+using MEMENIM.Fragmensts;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace MEMENIM_Android
+namespace MEMENIM.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity

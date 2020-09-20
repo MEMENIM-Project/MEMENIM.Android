@@ -12,7 +12,7 @@ using Android.Widget;
 using Memenim.Core;
 using Xamarin.Essentials;
 
-namespace MEMENIM_Android.Activities
+namespace MEMENIM.Activities
 {
     [Activity(Label = "LoginActivity")]
     public class LoginActivity : Activity

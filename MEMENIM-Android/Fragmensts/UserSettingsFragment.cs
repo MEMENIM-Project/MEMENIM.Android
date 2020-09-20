@@ -16,9 +16,9 @@ using Memenim.Core;
 using Memenim.Core.Data;
 using Java.Nio.Channels;
 using Xamarin.Essentials;
-using MEMENIM_Android.Activities;
+using MEMENIM.Activities;
 
-namespace MEMENIM_Android.Fragmensts
+namespace MEMENIM.Fragmensts
 {
     public class UserSettingsFragment : Fragment
     {
