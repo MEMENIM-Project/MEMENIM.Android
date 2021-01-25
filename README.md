@@ -1,1 +1,3 @@
 # MEMENIM.Android
+
+Fuck Xamarin
